@@ -2,7 +2,6 @@ package lab1
 
 import (
 	"errors"
-	"fmt"
 	"strings"
 )
 
@@ -18,7 +17,6 @@ func isValid(str string) (bool, string) {
 	countOperands := 0
 	countOperators := 0
 	length := len(str)
-	fmt.Println(str == "")
 	if str == "" {
 		return false, "must be non empty string"
 	}
@@ -88,7 +86,6 @@ func PostfixToPrefix(s string) (string, error) {
 
 	valid, err := isValid(s)
 	if !valid {
-		fmt.Println(err)
 		return "", errors.New(err)
 	}
 	var stack Stack

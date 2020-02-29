@@ -23,9 +23,9 @@ func (s *MySuite) TestPostfixToPrefix(c *C) {
 	// Simple examples
 	res, _ = PostfixToPrefix("4 3 * 2 -")
 	c.Assert(res, Equals, "- * 4 3 2")
-	// Error case "count of operators must be less operands then one"
+	// Error case "must be non empty string"
 	_, err = PostfixToPrefix("")
-	c.Assert(err, ErrorMatches, "count of operators must be less operands then one")
+	c.Assert(err, ErrorMatches, "must be non empty string")
 	// Error case "after operand must be whitespace"
 	_, err = PostfixToPrefix("4 3 * 2-")
 	c.Assert(err, ErrorMatches, "after operand must be whitespace")
@@ -35,15 +35,15 @@ func (s *MySuite) TestPostfixToPrefix(c *C) {
 	// Error case "first char must be operand not operator"
 	_, err = PostfixToPrefix("+ 4 3 * 2 -")
 	c.Assert(err, ErrorMatches, "first char must be operand not operator")
-	// // Error case "first char must be operand not whitespace"
-	// _, err = PostfixToPrefix(" 5 4 +")
-	// c.Assert(err, ErrorMatches, "first char must be operand not whitespace")
-	// // Error case "after whitespace must be operand or operator"
-	// _, err = PostfixToPrefix("")
-	// c.Assert(err, ErrorMatches, "after whitespace must be operand or operator")
-	// // Error case "last char must be operand or operator"
-	// _, err = PostfixToPrefix("5 + 4  ")
-	// c.Assert(err, ErrorMatches, "last char must be operand or operator")
+	// Error case "first char must be operand not whitespace"
+	_, err = PostfixToPrefix(" 5 4 +")
+	c.Assert(err, ErrorMatches, "first char must be operand not whitespace")
+	// Error case "after whitespace must be operand or operator"
+	_, err = PostfixToPrefix("5  4")
+	c.Assert(err, ErrorMatches, "after whitespace must be operand or operator")
+	// Error case "last char must be operand or operator"
+	_, err = PostfixToPrefix("5 + 4 ")
+	c.Assert(err, ErrorMatches, "last char must be operand or operator")
 }
 
 func ExamplePostfixToPrefix() {
