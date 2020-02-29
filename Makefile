@@ -4,7 +4,7 @@ clean:
 	rm -rf out build
 
 test:
-	go vet && go test
+	go get "gopkg.in/check.v1" && go vet && go test
 
 out/example: implementation/implementation.go cmd/example/main.go
 	mkdir -p out build
