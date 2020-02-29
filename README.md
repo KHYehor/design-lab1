@@ -17,4 +17,4 @@ make test # run tests with gocheck
 Successfull builds:
 - [successfull build](https://travis-ci.com/KHYehor/lab1/builds/151195553)
 - [failed build](https://travis-ci.com/KHYehor/lab1/builds/151195275)
-- [Pull Request build]()
+- [Pull Request build](https://travis-ci.com/KHYehor/lab1/builds/151196199)

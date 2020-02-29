@@ -44,6 +44,12 @@ func (s *MySuite) TestPostfixToPrefix(c *C) {
 	// Error case "last char must be operand or operator"
 	_, err = PostfixToPrefix("5 + 4 ")
 	c.Assert(err, ErrorMatches, "last char must be operand or operator")
+	// Error case "count of operators must be less operands then one"
+	_, err = PostfixToPrefix("5 4 + + + + +")
+	c.Assert(err, ErrorMatches, "count of operators must be less operands then one")
+	// Letters case
+	res, _ = PostfixToPrefix("ab c +")
+	c.Assert(res, Equals, "+ ab c")
 }
 
 func ExamplePostfixToPrefix() {
