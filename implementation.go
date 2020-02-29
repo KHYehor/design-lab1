@@ -2,11 +2,12 @@ package lab1
 
 import (
 	"errors"
+	"fmt"
 	"strings"
 )
 
 func isOperator(c byte) bool {
-	return strings.ContainsAny(string(c), "+ & - & * & / & ^")
+	return strings.ContainsAny(string(c), "+&-&*&/&^")
 }
 
 func isOperand(c byte) bool {
@@ -17,6 +18,10 @@ func isValid(str string) (bool, string) {
 	countOperands := 0
 	countOperators := 0
 	length := len(str)
+	fmt.Println(str == "")
+	if str == "" {
+		return false, "must be non empty string"
+	}
 	for i := 0; i < length; i++ {
 
 		if i == 0 {
@@ -83,6 +88,7 @@ func PostfixToPrefix(s string) (string, error) {
 
 	valid, err := isValid(s)
 	if !valid {
+		fmt.Println(err)
 		return "", errors.New(err)
 	}
 	var stack Stack
